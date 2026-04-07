@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Resume Analyzer</title>
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <!-- FontAwesome for Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+    <!-- PDF.js library -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js"></script>
+    <script>pdfjsLib.GlobalWorkerOptions.workerSrc = 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.worker.min.js';</script>
+</head>
+
+<body>
+    <div class="background-elements">
+        <div class="circle circle-1"></div>
+        <div class="circle circle-2"></div>
+        <div class="circle circle-3"></div>
+    </div>
+
+    <main class="container">
+        <header class="app-header">
+            <div class="logo">
+                <i class="fa-solid fa-brain"></i>
+            </div>
+            <h1>AI Resume Analyzer</h1>
+            <p>Paste your resume text below to instantly evaluate its ATS compatibility and discover missing skills.</p>
+        </header>
+
+        <section class="analyzer-section">
+            <div class="input-card card">
+                <h2><i class="fa-regular fa-file-lines"></i> Your Resume</h2>
+
+                <div class="upload-area" id="upload-area">
+                    <input type="file" id="resume-file" accept=".pdf" hidden>
+                    <label for="resume-file" class="upload-label">
+                        <i class="fa-solid fa-cloud-arrow-up"></i>
+                        <span>Click to upload PDF or drag & drop</span>
+                        <small>Max file size: 5MB</small>
+                    </label>
+                </div>
+
+                <div class="divider"><span>OR PASTE TEXT</span></div>
+
+                <textarea id="resume-text" placeholder="Paste your resume text here..."></textarea>
+                <button id="analyze-btn" class="btn primary-btn">
+                    <span>Analyze Resume</span>
+                    <i class="fa-solid fa-wand-magic-sparkles"></i>
+                </button>
+            </div>
+
+            <div class="results-card card" id="results-section">
+                <h2><i class="fa-solid fa-chart-pie"></i> Analysis Dashboard</h2>
+
+                <div class="score-container">
+                    <div class="score-header">
+                        <h3>ATS Match Score</h3>
+                        <span id="score-text">0%</span>
+                    </div>
+                    <div class="progress-track">
+                        <div class="progress-fill" id="progress-bar"></div>
+                    </div>
+                </div>
+
+                <div class="skills-grid">
+                    <div class="skills-box found">
+                        <h3><i class="fa-solid fa-circle-check"></i> Skills Found</h3>
+                        <ul id="found-skills-list" class="skills-list">
+                            <!-- Dynamically populated -->
+                            <li class="empty-state">No skills detected yet.</li>
+                        </ul>
+                    </div>
+
+                    <div class="skills-box missing">
+                        <h3><i class="fa-solid fa-circle-exclamation"></i> Missing Skills</h3>
+                        <ul id="missing-skills-list" class="skills-list">
+                            <!-- Dynamically populated -->
+                            <li class="empty-state">Waiting for analysis...</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <script src="script.js"></script>
+</body>
+
+</html>
